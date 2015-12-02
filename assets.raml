@@ -1,0 +1,197 @@
+/assets
+  get: # |1:16:03 跑通get3分15秒，加上功能也就是15分钟就把核心代码写完了，调试异常加试图找一种让JerseyTest打印堆栈的方式花了1个小时
+    reponse:
+      200:
+        body:
+          application/json:
+            type: object[]
+              uri: string
+              id: string
+              name: string
+  post: # 30:01 卡在了insert之后怎么取回id的问题上，58秒跑完第一个测试，20分钟核心代码写完，6分钟用于测Repository，剩下4分钟发觉问题在不会取回id
+    response:
+      200:
+        body:
+          application/json:
+            type: object
+              uri: string
+              id: number
+              name: string
+              income: object
+                uri: string
+              category: object
+                uri: string
+  /{assets-id}
+    get: #
+      reponse:
+        200:
+          body:
+            application/json:
+              type: object
+                uri: string
+                id: number
+                name: string
+                category: object
+                  uri: string   
+                  name: string
+    /income
+      get:
+        reponse:
+          200:
+            body:
+              application/json:
+                type: object
+                  uri: string
+                  amount: number
+                  boughtDate: date
+    /depreciations
+      get:
+        response:
+          200:
+            body:
+              application/json:
+                type: object[]
+                uri: string
+                id: number
+                reason: string
+                amount: number
+      post:
+         response:
+          200:
+            body:
+              application/json:
+                type: object
+                  uri: string
+                  id: number
+                  reason: string
+                  amount: number
+                  base: object
+                    uri: string
+                    amount: number
+      /{depreciation-id}
+        get:
+          response:
+            200:
+              body:
+                application/json:
+                  type: object[]
+                  uri: string
+                  id: number
+                  reason: string
+                  amount: number
+                  asset: object
+                    uri: string
+                    name: string
+        delete:
+          response:
+            200:
+              body:
+                application/json:
+                  type: object[]
+                  uri: string
+                  id: number
+                  reason: string
+                  amount: number
+    /liquidation
+      get:
+        response:
+          200:
+            bobdy: 
+              application/json:
+                type: object
+                  amount: number
+    
+/assets-categories
+  get:
+    response:
+      200:
+        body:
+          application/json:
+            type: object[]
+              uri: string
+              name: string
+  post:
+    response:
+      200:
+        body:
+          application/json:
+            type: object
+              uri: string
+              name: string
+  /{assets-category-id}
+    get:
+      response:
+        200:
+          body:
+            application/json:
+              type: object
+                uri: string
+                name: string
+    put:
+      response:
+        200:
+          body:
+            application/json:
+              type: object
+                uri: string
+                name: string
+    /policies
+      get:
+        response:
+          200:
+            body:
+              application/json:
+                type: object
+                  uri: string
+                  name: string
+      post:
+        response:
+          200:
+            body:
+              application/json:
+                type: object
+                  uri: string
+                  id: string
+                  name: string
+                  rules: object[]
+                  publishDate: date
+                  dueDate: date
+      /{policy-id}
+        get:
+          response:
+            200:
+              body:
+                application/json:
+                  type: object
+                    uri: string
+                    id: string
+                    name: string
+                    rules: object[]
+                    publishDate: date
+                    dueDate: date
+        put:
+          response:
+            200:
+              body:
+                application/json:
+                  type: object
+                  uri: string
+                  id: string
+                  name: string
+                  rules: object[]
+                  publishDate: date
+                  dueDate: date
+      /current
+        get:
+          response:
+            200:
+              body:
+                application/json:
+                  type: object
+                    uri: string
+                    name: string
+                    rules: object[]
+                    publishDate: date
+                    dueDate: date
+      
+      
